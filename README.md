@@ -22,3 +22,8 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 - [ ] Code is easily understood and communicative (eg. comments, variable names, etc). 
 - [ ] Everything that you decide to not do due to the limitation of time should be documented in the README.
 - [ ] GitHub commit history is consistent, easy to follow and understand. 
+
+---
+
+## Project Implementation
+
