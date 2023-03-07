@@ -27,3 +27,11 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 
 ## Project Implementation
 
+#### Scope
+- Best Practices
+	- Modular and reusable code
+	- Testing the code
+- Manage environment with pyenv
+- Adding Dependencies in requirements.txt
+- IaaS using Terraform on GCP
+- Host Application (Flask)
