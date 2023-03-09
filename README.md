@@ -62,6 +62,8 @@ terraform apply
 terraform destroy
 ```
 
+`.gitignore` was added to prevent pushing unncessary files to repo.
+
 
 
 
