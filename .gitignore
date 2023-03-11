@@ -3,3 +3,4 @@ terraform/terraform*
 .pytest_cache/
 tests/__pycache__/
 app/__pycache__
+.vscode
