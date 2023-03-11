@@ -121,51 +121,22 @@ python predict.py
 
 Basic structure of the web application is now as given below:
 
+```
 .
-├── app/
-│   ├── train.py
-│   ├── predict.py
-│   └── model/
-│       └── my_best_model.h5
+├── LICENSE
+├── My Best Model.ipynb
 ├── Pipfile
 ├── Pipfile.lock
 ├── README.md
-├── LICENSE
-├── My\ Best\ Model.ipynb
-├── terraform/
-│   ├── main.tf
-│   └── variables.tf
-└── .gitignore
-
-.
-├── LICENSE
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-├── .gitignore
-├── My\ Best\ Model.ipynb
 ├── app
-	├── train.py
-	├── predict.py
-	└── model
-		└── my_best_model.h5
-├──
-├──
-
-app/
-├── train.py
-├── predict.py
-└── model/
-    └── my_best_model.h5
-
-
-
-
-My\ Best\ Model.ipynb
-terraform/
-├── main.tf
-└── variables.tf
-
+│   ├── model
+│   │   └── my_best_model.h5
+│   ├── predict.py
+│   └── train.py
+└── terraform
+    ├── main.tf
+    └── variables.tf
+```
 
 
 To make the code more readable and for documentation purposes, docstrings were also added to each function.
