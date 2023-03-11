@@ -137,4 +137,39 @@ Basic structure of the web application is now as given below:
 │   └── variables.tf
 └── .gitignore
 
+.
+├── LICENSE
+├── Pipfile
+├── Pipfile.lock
+├── README.md
+├── .gitignore
+├── My\ Best\ Model.ipynb
+├── app
+	├── train.py
+	├── predict.py
+	└── model
+		└── my_best_model.h5
+├──
+├──
+
+app/
+├── train.py
+├── predict.py
+└── model/
+    └── my_best_model.h5
+
+
+
+
+My\ Best\ Model.ipynb
+terraform/
+├── main.tf
+└── variables.tf
+
+
+
+To make the code more readable and for documentation purposes, docstrings were also added to each function.
+
+Type annotations were also added for each function that add to improving code quality and can save effort in long run.
 	
+Adding logging to the modules.
