@@ -31,7 +31,7 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 - Best Practices
 	- Modular and reusable code
 	- Testing the code
-- Manage environment with pyenv
+- Manage environment with pipenv
 - Adding Dependencies in requirements.txt
 - IaaS using Terraform on GCP
 - Host Application (Flask)
@@ -64,8 +64,30 @@ terraform destroy
 
 `.gitignore` was added to prevent pushing unncessary files to repo.
 
+#### Creating a Virtual Environment with Python 3.10
 
+1. Virtual Environment was created using pipenv:
+```shell
+sudo apt install python3-pip
+pip install pipenv
+```
 
+Since pipenv was installed in .local path, additional steps were added to include it in PATH.
+```shell
+echo 'export PATH=$PATH:/path to userdir/.local/bin' >> ~/.bashrc
+```
+Activated environment with:
+```shell
+source ~/.bashrc
+```
 
-
-
+2. Create new virtual environment with Python 3.10 & activating it:
+```shell
+sudo apt install python3.10
+pipenv --python 3.10
+pipenv shell
+```
+3. Install required dependecies as required in the code:
+```shell
+pipenv install tensorflow keras numpy jupyter
+```
