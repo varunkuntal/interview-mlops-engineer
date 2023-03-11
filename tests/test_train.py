@@ -1,10 +1,11 @@
-
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import tensorflow as tf
 import numpy as np
 from app.train import create_model, get_data
+
 
 def test_create_model():
     """
@@ -12,6 +13,7 @@ def test_create_model():
     """
     model = create_model()
     assert isinstance(model, tf.keras.Sequential)
+
 
 def test_get_data():
     """

@@ -167,6 +167,8 @@ Also added test data with the expected results. Usually in a project we will hav
 
 #### Linting & Formatting
 
+##### Pylint
+
 To improve the code quality, we use a python library called pylint which checks the code for PEP 8 style violations, such as incorrect indentations, line length, and naming conventions, unused variables, undefined names, unused imports, and more.
 
 We start by adding pylint extension to VS Code and add pylint to the environment:
@@ -178,3 +180,23 @@ Pylint gave a couple of suggestions like to redefine the variable name for model
 ![](static/images/pylint_redefine_scope_suggestion.png)
 
 We get some useful suggestions and some not so useful suggestions. We could also add `.pylintrc` file to configure pylint suggestions, disable warnings & errors but we will skip that as the code base is simple. After applying the suggested changes, the code is almost compliant with the suggestions.
+
+##### Black
+
+Black is a Python code formatter that automatically formats your code according to a set of rules.
+
+We start by installing the tool as dev dependency
+
+`pipenv install --dev black` 
+
+Since black actually formats the code, we make sure to commit the code before we run black so in case any unwanted changes happen we can rollback.
+
+We run command to see change suggestions from black
+
+`black --diff .`
+
+We found suggestions to convert single quotes to double quotes which we can ignore using `-S` to skip string normalization:
+
+`black -S --diff .`
+
+We found suggestions related to newlines only. 
