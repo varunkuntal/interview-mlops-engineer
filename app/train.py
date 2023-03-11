@@ -2,9 +2,11 @@ import tensorflow as tf
 from tensorflow.keras.models import save_model
 import numpy as np
 from tensorflow import keras
+import os
 
-# import sys
-# sys.setrecursionlimit(10000000)
+MODEL_DIR = 'model'
+MODEL_FILENAME = 'my_best_model.h5'
+MODEL_PATH = os.path.join(MODEL_DIR, MODEL_FILENAME)
 
 def create_model():
     model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
@@ -24,8 +26,9 @@ def save_model_custom(model, filename):
     print('Model saved as: ', filename)
 
 if __name__ == '__main__':
+    os.makedirs(MODEL_DIR, exist_ok=True)
     model = create_model()
     xs, ys = get_data()
     train_model(model, xs, ys)
-    save_model_custom(model, 'my_best_model.h5')
+    save_model(model, MODEL_PATH)
 
