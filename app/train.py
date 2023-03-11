@@ -51,4 +51,3 @@ if __name__ == '__main__':
     xs, ys = get_data()
     train_model(model, xs, ys)
     save_model_custom(model, MODEL_PATH)
-

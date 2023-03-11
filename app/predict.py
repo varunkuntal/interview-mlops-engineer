@@ -20,11 +20,11 @@ def load_saved_model(file_path: str = 'my_best_model.h5') -> 'tf.keras.Sequentia
     return saved_model
 
 def predict(saved_model: 'tf.keras.Sequential', input_value: list[float]) -> np.ndarray:
-    prediction = saved_model.predict([input_value])
+    prediction = saved_model.predict(input_value)
     return prediction
 
 if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     saved_model = load_saved_model(MODEL_PATH)
-    prediction = predict(saved_model, 10.0)
+    prediction = predict(saved_model, [10])
     logger.info(f'Prediction: {prediction}')
