@@ -91,3 +91,50 @@ pipenv shell
 ```shell
 pipenv install tensorflow keras numpy jupyter
 ```
+
+#### Creating python scripts from notebook
+
+We copy the code from the jupyter notebook and create `train.py` & `predict.py`. We could use jupyter nbconvert to achieve the same but since the code is simple we proceed with copying contents manually.
+
+To make the code modular & resuable we divide different aspects of sript operations into individual functions. 
+
+`train.py` can be modularized into 4 different functions:
+
+- `create_model()`: Creates a sequential neural network model with one dense layer of one unit and returns it.
+- `get_data()`: Provides the data for training the neural network.
+- `train_model`: Trains the neural network model on the provided data using mean squared error loss and stochastic gradient descent
+- `save_model()`: Saves the provided model to the specified file (default: `model/my_best_model.h5`).
+
+`predict.py` can be modularized into 2 different functions:
+
+- `load_model`: Loads a saved model from the specified file (default: `model/my_best_model.h5`)
+- `predict`: Uses the provided model to make predictions
+
+We move the scripts to directory `app/`. We also create a directory `model` to store the model.
+
+We execute the two scipts:
+
+```shell
+python train.py
+python predict.py
+```
+
+Basic structure of the web application is now as given below:
+
+.
+├── app/
+│   ├── train.py
+│   ├── predict.py
+│   └── model/
+│       └── my_best_model.h5
+├── Pipfile
+├── Pipfile.lock
+├── README.md
+├── LICENSE
+├── My\ Best\ Model.ipynb
+├── terraform/
+│   ├── main.tf
+│   └── variables.tf
+└── .gitignore
+
+	
