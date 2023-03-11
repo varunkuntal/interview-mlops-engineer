@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import tensorflow as tf
 import numpy as np
-from app.train import create_model, get_data, train_model
+from app.train import create_model, get_data
 
 def test_create_model():
     """

@@ -1,5 +1,5 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import tensorflow as tf
 import numpy as np
 import logging
@@ -31,7 +31,7 @@ def get_data() -> tuple[np.ndarray, np.ndarray]:
 
 def train_model(model: tf.keras.Sequential, xs: np.ndarray, ys: np.ndarray, epochs: int = 500) -> None:
     """
-    Trains the neural network model on the provided data for the specified number of epochs (default: 500). 
+    Trains the neural network model on the provided data for the specified number of epochs (default: 500).
     """
     model.fit(xs, ys, epochs)
     logger.info('Model trained successfully!')
@@ -47,7 +47,8 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     os.makedirs(MODEL_DIR, exist_ok=True)
-    model = create_model()
+    tf_model = create_model()
     xs, ys = get_data()
-    train_model(model, xs, ys)
-    save_model_custom(model, MODEL_PATH)
+    train_model(tf_model, xs, ys)
+    save_model_custom(tf_model, MODEL_PATH)
+
