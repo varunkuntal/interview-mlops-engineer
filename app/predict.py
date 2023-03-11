@@ -1,9 +1,10 @@
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-import tensorflow as tf
-import numpy as np
 import logging
+
+import numpy as np
+import tensorflow as tf
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

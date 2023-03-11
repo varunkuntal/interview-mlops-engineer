@@ -2,9 +2,10 @@ import os
 
 # Turning warning messages off for tensorflow
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+import sys
+
 import numpy as np
 import tensorflow as tf
-import sys
 
 # Adding app module to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))

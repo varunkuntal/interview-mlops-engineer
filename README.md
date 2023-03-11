@@ -200,3 +200,19 @@ We found suggestions to convert single quotes to double quotes which we can igno
 `black -S --diff .`
 
 We found suggestions related to newlines only. 
+
+
+##### Isort
+
+`isort` is a Python library used for sorting imports in Python code automatically. We start by installing the tool as dev dependency
+
+`pipenv install --dev isort` 
+
+We see suggestions from isort:
+
+`isort --diff .`
+
+We accept suggestions from isort and apply them using:
+
+`isort .`
+
