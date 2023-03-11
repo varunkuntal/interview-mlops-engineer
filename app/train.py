@@ -1,34 +1,54 @@
-import tensorflow as tf
-from tensorflow.keras.models import save_model
-import numpy as np
-from tensorflow import keras
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
+import tensorflow as tf
+import numpy as np
+import logging
 
-MODEL_DIR = 'model'
+MODEL_DIR = './model'
 MODEL_FILENAME = 'my_best_model.h5'
 MODEL_PATH = os.path.join(MODEL_DIR, MODEL_FILENAME)
 
-def create_model():
-    model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+def create_model() -> tf.keras.Sequential:
+    """
+    Creates and returns a simple neural network model with one dense layer and an SGD optimizer.
+    """
+    model = tf.keras.Sequential([tf.keras.layers.Dense(units=1, input_shape=[1])])
     model.compile(optimizer='sgd', loss='mean_squared_error')
     return model
 
-def get_data():
+def get_data() -> tuple[np.ndarray, np.ndarray]:
+    """
+    Provides the data for training the neural network. Returns a tuple containing two numpy arrays:
+    - xs: An array of input values
+    - ys: An array of output values
+    """
     xs = np.array([-1.0, 0.0, 1.0, 2.0, 3.0, 4.0], dtype=float)
     ys = np.array([-2.0, 1.0, 4.0, 7.0, 10.0, 13.0], dtype=float)
     return xs, ys
 
-def train_model(model, xs, ys):
-    model.fit(xs, ys, epochs=500)
+def train_model(model: tf.keras.Sequential, xs: np.ndarray, ys: np.ndarray, epochs: int = 500) -> None:
+    """
+    Trains the neural network model on the provided data for the specified number of epochs (default: 500). 
+    """
+    model.fit(xs, ys, epochs)
+    logger.info('Model trained successfully!')
 
-def save_model_custom(model, filename):
-    save_model(model, filename)
-    print('Model saved as: ', filename)
+def save_model_custom(model: tf.keras.Sequential, filename: str = 'my_best_model.h5') -> None:
+    """
+    Saves the provided model to the specified file (default: 'my_best_model.h5').
+    """
+    tf.keras.models.save_model(model, filename)
+    logger.info(f'Model saved to file: {filename}')
 
 if __name__ == '__main__':
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
     os.makedirs(MODEL_DIR, exist_ok=True)
     model = create_model()
     xs, ys = get_data()
     train_model(model, xs, ys)
-    save_model(model, MODEL_PATH)
+    save_model_custom(model, MODEL_PATH)
 
