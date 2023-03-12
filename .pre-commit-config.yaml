@@ -18,3 +18,15 @@ repos:
   rev: stable
   hooks:
     - id: black
+- repo: local
+  hooks:
+    - id: pylint
+      name: pylint
+      entry: pylint
+      language: system
+      types: [python]
+      args: [
+        "-rn",
+        "-sn",
+        "--recursive=y"
+      ]
