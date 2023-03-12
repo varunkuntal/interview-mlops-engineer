@@ -15,13 +15,13 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 
 
 ### **Evaluation:**
-- [ ] There should be **at least** one test written and the README file should include instructions on how to execute it.
-- [ ] You should provide clear documentation of the API, you can use Swagger or any other format.
-- [ ] README file should include clear instructions on how to deploy / start the application.
-- [ ] No crashes or bugs.
-- [ ] Code is easily understood and communicative (eg. comments, variable names, etc).
-- [ ] Everything that you decide to not do due to the limitation of time should be documented in the README.
-- [ ] GitHub commit history is consistent, easy to follow and understand.
+- [x] There should be **at least** one test written and the README file should include instructions on how to execute it.
+- [x] You should provide clear documentation of the API, you can use Swagger or any other format.
+- [x] README file should include clear instructions on how to deploy / start the application.
+- [x] No crashes or bugs.
+- [x] Code is easily understood and communicative (eg. comments, variable names, etc).
+- [x] Everything that you decide to not do due to the limitation of time should be documented in the README.
+- [x] GitHub commit history is consistent, easy to follow and understand.
 
 ---
 
