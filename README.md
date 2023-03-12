@@ -19,9 +19,9 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 - [ ] You should provide clear documentation of the API, you can use Swagger or any other format.
 - [ ] README file should include clear instructions on how to deploy / start the application.
 - [ ] No crashes or bugs.
-- [ ] Code is easily understood and communicative (eg. comments, variable names, etc). 
+- [ ] Code is easily understood and communicative (eg. comments, variable names, etc).
 - [ ] Everything that you decide to not do due to the limitation of time should be documented in the README.
-- [ ] GitHub commit history is consistent, easy to follow and understand. 
+- [ ] GitHub commit history is consistent, easy to follow and understand.
 
 ---
 
@@ -34,12 +34,12 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 - Manage environment with pipenv
 - Adding Dependencies in requirements.txt
 - IaaS using Terraform on GCP
-- Host Application (Flask)
+- Host Application (FASTAPI)
 
-Google Cloud Platform was chosen to develop and deploy the REST API as they provide ~$300 credits as part of free trial & c3 high compute machine type available free for preview (as of 9th March, 2023). 
+Google Cloud Platform was chosen to develop and deploy the REST API as they provide ~$300 credits as part of free trial & c3 high compute machine type available free for preview (as of 9th March, 2023).
 
 ### Terraform
-To automate the deployment of infrastructure required for the project, Terraform was chosen. While not explicitly required, it is good practice to use an Infrastructure-as-Code (IaaC) tool like Terraform in MLOps pipelines. In case of adding more features, it will be easier to add components later on to provision more services in the cloud.  
+To automate the deployment of infrastructure required for the project, Terraform was chosen. While not explicitly required, it is good practice to use an Infrastructure-as-Code (IaaC) tool like Terraform in MLOps pipelines. In case of adding more features, it will be easier to add components later on to provision more services in the cloud.
 
 After installing terraform & gcloud utility locally on linux pc, a service account with "Owner" permissions was created in GCP & access key json was downloaded for the environment variable:
 
@@ -96,7 +96,7 @@ pipenv install tensorflow keras numpy jupyter
 
 We copy the code from the jupyter notebook and create `train.py` & `predict.py`. We could use jupyter nbconvert to achieve the same but since the code is simple we proceed with copying contents manually.
 
-To make the code modular & resuable we divide different aspects of sript operations into individual functions. 
+To make the code modular & resuable we divide different aspects of sript operations into individual functions.
 
 `train.py` can be modularized into 4 different functions:
 
@@ -154,11 +154,11 @@ We add `__init__.py` file to the app directory to make it a Python package. This
 
 We add 4 unit tests in 2 files with 2 unit tests in each.
 
-`test_train.py` 
+`test_train.py`
 
 ![](static/images/test_train.png)
 
-and `test_predict.py` 
+and `test_predict.py`
 
 ![](static/images/test_predict.png)
 
@@ -173,7 +173,7 @@ To improve the code quality, we use a python library called pylint which checks 
 
 We start by adding pylint extension to VS Code and add pylint to the environment:
 
-`pipenv install --dev pylint` 
+`pipenv install --dev pylint`
 
 Pylint gave a couple of suggestions like to redefine the variable name for model to a different name for code clarity. Changes were made and now the code is mostly compliant according to pylint.
 
@@ -187,7 +187,7 @@ Black is a Python code formatter that automatically formats your code according 
 
 We start by installing the tool as dev dependency
 
-`pipenv install --dev black` 
+`pipenv install --dev black`
 
 Since black actually formats the code, we make sure to commit the code before we run black so in case any unwanted changes happen we can rollback.
 
@@ -199,14 +199,14 @@ We found suggestions to convert single quotes to double quotes which we can igno
 
 `black -S --diff .`
 
-We found suggestions related to newlines only. 
+We found suggestions related to newlines only.
 
 
 ##### Isort
 
 `isort` is a Python library used for sorting imports in Python code automatically. We start by installing the tool as dev dependency
 
-`pipenv install --dev isort` 
+`pipenv install --dev isort`
 
 We see suggestions from isort:
 
@@ -216,3 +216,40 @@ We accept suggestions from isort and apply them using:
 
 `isort .`
 
+
+### REST API with FASTAPI & OpenAPI Docs
+
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on the open standards for APIs: OpenAPI (formerly known as Swagger) and JSON Schema. Other alternatives for serving API include Flask, Django, Pyramid etc. We chose FASTAPI as it is fast, easy to use & handles concurrent requests.
+
+We start by installing FASTAPI along with uvicorn which is default web server for FastAPI:
+
+`pipenv install fastapi uvicorn`
+
+We create an `app.py` and add an instance of FASTAPI() class called `app`
+
+```python
+app = FastAPI(title="MLOps Interview REST API",
+    version="0.0.1",)
+```
+
+To prevent loading the model everytime there is a request to endpoint, we simply load the model at startup so it is in global scope.
+
+We define a decorator with an HTTP GET method with a URL parameter `input_value`.
+To handle requests asynchronously we define async function which significantly improve the server's performance and throughput, particularly when dealing with long-running or I/O-bound tasks.
+
+```python
+@app.get('/prediction/{input_value}')
+async def prediction(input_value: float):
+    """
+    Make predictions on the given input and returns the predicted output as a JSON response.
+    """
+    predicted_output = tf_model.predict([[input_value]])
+    logger.info(f'API called, prediction: {predicted_output}')
+    return jsonable_encoder({'prediction': predicted_output.tolist()})
+```
+
+For the prediction endpint above, the valid input is a single float value passed as a path pareameter to `/predidction/{input_value}`. The input shape is a 2D array of shape `(1,1)` & output is a JSON string with a key-value pair with shape `(1,1)` consistent with input shape.
+
+We open OpenAPI docs url `http://127.0.0.1:8000/docs` for sending an HTTP get request to endpoint `/prediction/{input_value}`. We get a JSON response of prediction endpoint.
+
+![](static/images/OPENAPI_docs.png)
