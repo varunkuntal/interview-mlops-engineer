@@ -25,6 +25,21 @@ You should create 1 endpoint that accepts relevant input and returns the inferne
 
 ---
 
+Index
+-----
+
+*   [Project Implementation](#project-implementation)
+*   [Terraform](#terraform)
+*   [Creating a Virtual Environment with Python 3.10](#creating-a-virtual-environment-with-python-310)
+*   [Creating python scripts from notebook](#creating-python-scripts-from-notebook)
+*   [Unit Tests](#unit-tests)
+*   [Instructions to execute tests](#instructions-to-execute-tests)
+*   [Linting & Formatting](#linting--formatting)
+*   [Pre-commit hooks](#pre-commit-hooks)
+*   [REST API with FASTAPI & OpenAPI Docs](#rest-api-with-fastapi--openapi-docs)
+*   [Instructions to Deploy / Start application](#instructions-to-deploy--start-application)
+*   [Future scope of project if given more time](#future-scope-of-project-if-given-more-time)
+
 ## Project Implementation
 
 #### Scope
