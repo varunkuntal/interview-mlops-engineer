@@ -232,22 +232,22 @@ We define following as `pre-commit-config.yaml`:
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v3.2.0
+  rev: v4.4.0
   hooks:
-	- id: trailing-whitespace
-	- id: end-of-file-fixer
-	- id: check-yaml
-	- id: check-added-large-files
-- repo: https://github.com/pycqa/isort
-  rev: 5.10.1
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-yaml
+    - id: check-added-large-files
+- repo: https://github.com/pre-commit/mirrors-isort
+  rev: v5.10.1
   hooks:
-	- id: isort
-	  name: isort (python)
+    - id: isort
+      args:
+      - --profile=black
 - repo: https://github.com/psf/black
   rev: 22.6.0
   hooks:
     - id: black
-      language_version: python3.9
 - repo: local
   hooks:
     - id: pylint
@@ -256,8 +256,8 @@ repos:
       language: system
       types: [python]
       args: [
-        "-rn", # Only display messages
-        "-sn", # Don't display the score
+        "-rn",
+        "-sn",
         "--recursive=y"
       ]
 - repo: local
@@ -271,9 +271,11 @@ repos:
       args: [
         "tests/"
       ]
-``
+```
 
+We commit and check for violations. We get a few viollations with a warning, after fixing those, we commit again and most issues go away.
 
+![](static/images/pre-commit-passed.png)
 
 ### REST API with FASTAPI & OpenAPI Docs
 
