@@ -343,3 +343,13 @@ Keep the path handy.
 `http://127.0.0.1:8000/docs`
 
 - In the GET /prediction/{input_value}, give a single number to test the endpoint and press execute.
+
+
+### Future scope of project if given more time
+
+- Adding an experiment tracking, data versioning, model management, reproducibility and collaboration tools like MLFlow, Kubeflow etc
+- Adding open source monitoring & alerting tools like Prometheus & Grafana.
+- Dockerizing the application to deploy on serverless services like GCP Cloud Run, Azure Web Service or AWS Lambda.
+- Adding integration tests for the different components with best practices using docker compose.
+- Using Github actions to automate end-to-end lifecycle with CI/CD best practices.
+- AutoML tools like Google Cloud AutoML in Vertex AI to automate the model selection, hyperparameter tuning, and feature engineering process 
