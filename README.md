@@ -318,3 +318,28 @@ For the prediction endpint above, the valid input is a single float value passed
 We open OpenAPI docs url `http://127.0.0.1:8000/docs` for sending an HTTP get request to endpoint `/prediction/{input_value}`. We get a JSON response of prediction endpoint.
 
 ![](static/images/OPENAPI_docs.png)
+
+
+### Instructions to Deploy / Start application
+
+- Clone the repository. Install python 3.10 in your system, verify python version with
+
+`which python`
+
+Keep the path handy.
+
+- Install pipenv in the system, we will use it to install dependencies in `Pipfile.lock`. Instructions to install pipenv are given at beginning of this README file.
+
+- Install production dependencies using:
+
+`pipenv install --ignore-pipfile --deploy`
+
+- Start the FASTAPI uvicorn web server by simply executing:
+
+`uvicorn app.app:app --reload`
+
+- Navigate to the url to test the api endpoint:
+
+`http://127.0.0.1:8000/docs`
+
+- In the GET /prediction/{input_value}, give a single number to test the endpoint and press execute.
